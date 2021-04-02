@@ -69,4 +69,31 @@ public class DoublePointerTest {
         }
         return false;
     }
+
+    /**
+     * <a href="https://leetcode-cn.com/problems/valid-palindrome-ii/">680. 验证回文字符串 Ⅱ</a>
+     */
+    @Test
+    public void validPalindromeTest() {
+        System.out.println(validPalindrome("abca"));
+    }
+
+    private boolean validPalindrome(String s) {
+        char[] cs = s.toCharArray();
+        for (int i = 0, j = cs.length - 1; i <= j; i++, j--) {
+            if (cs[i] != cs[j]) {
+                return isPalindrome(cs, i + 1, j) || isPalindrome(cs, i, j - 1);
+            }
+        }
+        return true;
+    }
+
+    private boolean isPalindrome(char[] cs, int h, int f) {
+        while (h <= f) {
+            if (cs[h++] != cs[f--]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
