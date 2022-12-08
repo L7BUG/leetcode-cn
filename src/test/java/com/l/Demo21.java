@@ -36,13 +36,10 @@ public class Demo21 {
 				return list2;
 			}
 		}
-		int val;
 		if (list1.val < list2.val) {
-			val = list1.val;
-			return new ListNode(val, mergeTwoLists1(list1.next, list2));
+			return new ListNode(list1.val, mergeTwoLists1(list1.next, list2));
 		} else {
-			val = list2.val;
-			return new ListNode(val, mergeTwoLists1(list1, list2.next));
+			return new ListNode(list2.val, mergeTwoLists1(list1, list2.next));
 		}
 	}
 
