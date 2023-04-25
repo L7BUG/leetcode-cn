@@ -26,6 +26,12 @@ public class Demo23 {
 
 	@Test
 	public void test() {
+		ListNode listNode = mergeKLists(data);
+		ListNodeUtils.printListNode(listNode);
+	}
+
+	@Test
+	public void test2() {
 		ListNode listNode = mergeKLists(data2);
 		ListNodeUtils.printListNode(listNode);
 	}
