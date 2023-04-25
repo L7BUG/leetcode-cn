@@ -1,6 +1,6 @@
 package com.l;
 
-import lombok.ToString;
+import com.l.entity.ListNode;
 import org.junit.Test;
 
 /**
@@ -67,21 +67,4 @@ public class Demo21 {
 		return head.next;
 	}
 
-	@ToString
-	public static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode() {
-		}
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
 }
