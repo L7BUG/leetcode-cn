@@ -1,14 +1,11 @@
 package com.l.entity;
 
-import lombok.ToString;
-
 /**
  * ListNode
  *
  * @author luliangyu
  * @since 2023-04-25 11:57
  */
-@ToString
 public class ListNode {
 	public int val;
 	public ListNode next;
