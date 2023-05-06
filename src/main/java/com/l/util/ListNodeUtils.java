@@ -30,4 +30,12 @@ public class ListNodeUtils {
 		System.out.println();
 		System.out.println("---");
 	}
+
+	public static ListNode getLastNode(ListNode head) {
+		ListNode i = head;
+		while (i.next != null) {
+			i = i.next;
+		}
+		return i;
+	}
 }
