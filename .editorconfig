@@ -1,9 +1,11 @@
 root = true
 
-[{*.java,*.xml}]
+[*]
 charset = utf-8
 end_of_line = lf
 indent_size = 4
+
+[{*.java,*.xml}]
 indent_style = tab
 # insert_final_newline = false
 # max_line_length = 120

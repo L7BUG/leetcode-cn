@@ -45,7 +45,7 @@ public class Demo14 {
 				if (ans.charAt(j) != strs[i].charAt(j))
 					break;
 			}
-			//将匹配的长度进行截取
+			// 将匹配的长度进行截取
 			ans = ans.substring(0, j);
 			if (ans.equals(""))
 				return ans;
