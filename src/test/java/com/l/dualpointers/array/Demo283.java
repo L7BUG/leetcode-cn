@@ -1,4 +1,4 @@
-package com.l.dualpointers;
+package com.l.dualpointers.array;
 
 
 import org.junit.Assert;

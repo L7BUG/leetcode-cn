@@ -1,4 +1,4 @@
-package com.l;
+package com.l.dualpointers.linked;
 
 import com.l.entity.ListNode;
 import org.junit.Test;

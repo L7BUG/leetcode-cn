@@ -1,4 +1,4 @@
-package com.l;
+package com.l.dualpointers.linked;
 
 
 public class Demo160 {

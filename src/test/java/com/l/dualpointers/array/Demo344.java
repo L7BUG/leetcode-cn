@@ -1,4 +1,4 @@
-package com.l.dualpointers;
+package com.l.dualpointers.array;
 
 /**
  * <a href='https://leetcode.cn/problems/reverse-string/description/'>[344]-反转字符串</a>
