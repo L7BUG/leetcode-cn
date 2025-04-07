@@ -41,11 +41,9 @@
 			<version>${hutool.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
-			<version>4.12.0</version>
 		</dependency>
 	</dependencies>
 
@@ -62,6 +60,15 @@
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-bom</artifactId>
 				<version>${hutool.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2024.0.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
