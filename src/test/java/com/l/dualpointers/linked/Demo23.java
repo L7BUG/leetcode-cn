@@ -17,7 +17,7 @@ public class Demo23 {
 	private final ListNode[] data = new ListNode[SIZE];
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		Random random = new Random();
 		for (int i = 0; i < SIZE; i++) {
 			int[] temp = new int[10];
