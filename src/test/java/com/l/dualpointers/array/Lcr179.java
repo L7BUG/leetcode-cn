@@ -22,7 +22,7 @@ public class Lcr179 {
 
 	@Before
 	public void setUp() throws Exception {
-		list = new ArrayList<>(10);
+		list = new ArrayList<>(100);
 		for (int i = 0; i < 100; i++) {
 			int[] temp = MockUtil.randomArr(10, 100);
 			Arrays.sort(temp);
