@@ -18,4 +18,8 @@ public class MockUtil {
 		}
 		return data;
 	}
+
+	public static int random(int max) {
+		return R.nextInt(max);
+	}
 }
