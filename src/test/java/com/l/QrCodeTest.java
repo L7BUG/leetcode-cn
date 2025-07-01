@@ -1,7 +1,7 @@
 package com.l;
 
 import cn.hutool.extra.qrcode.QrCodeUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

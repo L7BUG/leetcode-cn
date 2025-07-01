@@ -1,6 +1,6 @@
 package com.l;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <a href='https://leetcode-cn.com/problems/longest-common-prefix/'>14. 最长公共前缀</a>

@@ -1,7 +1,7 @@
 package com.l.dualpointers.linked;
 
 import com.l.entity.ListNode;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 合并两个有序链表

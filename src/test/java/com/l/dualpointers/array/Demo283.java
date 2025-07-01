@@ -1,9 +1,9 @@
 package com.l.dualpointers.array;
 
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class Demo283 {
 		return true;
 	}
 
-	@Before
+	@AfterEach
 	public void setUp() throws Exception {
 		for (int i = 0; i < STEP; i++) {
 			int[] data = new int[10];
@@ -88,7 +88,7 @@ public class Demo283 {
 			System.err.println(Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(",")));
 			moveZeroes2(arr);
 			System.err.println(Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(",")));
-			Assert.assertTrue(valid(arr));
+			Assertions.assertTrue(valid(arr));
 		}
 	}
 
@@ -123,10 +123,10 @@ public class Demo283 {
 		for (int[] data : testData) {
 			System.err.println("====================");
 			System.err.println(Arrays.stream(data).mapToObj(String::valueOf).collect(Collectors.joining(",")));
-			Assert.assertFalse(valid(data));
+			Assertions.assertFalse(valid(data));
 			moveZeroes2(data);
 			System.err.println(Arrays.stream(data).mapToObj(String::valueOf).collect(Collectors.joining(",")));
-			Assert.assertTrue(valid(data));
+			Assertions.assertTrue(valid(data));
 		}
 	}
 

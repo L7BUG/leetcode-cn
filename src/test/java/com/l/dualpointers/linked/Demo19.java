@@ -2,8 +2,8 @@ package com.l.dualpointers.linked;
 
 import com.l.entity.ListNode;
 import com.l.util.ListNodeUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * <a href='https://leetcode.cn/problems/remove-nth-node-from-end-of-list/'>19. 删除链表的倒数第 N 个结点</a>
@@ -15,7 +15,7 @@ public class Demo19 {
 	private ListNode testNode1;
 	private ListNode testNode2;
 
-	@Before
+	@AfterEach
 	public void before() {
 		testNode1 = ListNodeUtils.arrayToListNode(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
 		testNode2 = ListNodeUtils.arrayToListNode(new int[]{1});

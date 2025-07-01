@@ -2,8 +2,8 @@ package com.l.dualpointers.linked;
 
 import com.l.entity.ListNode;
 import com.l.util.ListNodeUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * <a href="https://leetcode.cn/problems/linked-list-cycle/">141. 环形链表</a>
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class Demo141 {
 	private ListNode listNode1, listNode2, listNode3;
 
-	@Before
+	@AfterEach
 	public void before() {
 		listNode1 = ListNodeUtils.arrayToListNode(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
 		ListNodeUtils.getLastNode(listNode1).next = listNode1.next.next.next.next;

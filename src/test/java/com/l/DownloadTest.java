@@ -1,7 +1,7 @@
 package com.l;
 
 import cn.hutool.http.HttpUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.net.URISyntaxException;
 

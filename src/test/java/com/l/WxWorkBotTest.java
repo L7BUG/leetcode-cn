@@ -2,7 +2,7 @@ package com.l;
 
 import com.alibaba.fastjson2.JSONObject;
 import okhttp3.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 

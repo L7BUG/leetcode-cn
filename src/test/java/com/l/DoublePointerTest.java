@@ -1,6 +1,6 @@
 package com.l;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <h1>Leetcode 双指针 问题</h1>

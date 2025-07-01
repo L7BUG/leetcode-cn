@@ -1,8 +1,8 @@
 package com.l.dualpointers.linked;
 
 import com.l.entity.ListNode;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * <a href='https://leetcode.cn/problems/partition-list/'>86. 分隔链表</a>
@@ -33,7 +33,7 @@ public class Demo86 {
 		System.out.println("---");
 	}
 
-	@Before
+	@AfterEach
 	public void before() {
 		listNode = arrayToListNode(new int[]{1, 4, 3, 2, 5, 2});
 	}

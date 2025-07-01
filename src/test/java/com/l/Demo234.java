@@ -1,7 +1,7 @@
 package com.l;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * [234]回文链表
@@ -57,7 +57,7 @@ public class Demo234 {
 		test5.print();
 	}
 
-	@Before
+	@AfterEach
 	public void init() {
 		test1 = new ListNode(1, 2, 1);
 		test2 = new ListNode(1, 2, 2, 1);
@@ -117,8 +117,8 @@ public class Demo234 {
 	}
 
 	public static class Palindrome {
-		private boolean flag = true;
-		private boolean canExec = true;
+		private final boolean flag = true;
+		private final boolean canExec = true;
 
 		Palindrome(ListNode head) {
 

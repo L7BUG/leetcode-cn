@@ -1,8 +1,7 @@
 package com.l.dualpointers.array;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -18,16 +17,11 @@ import java.util.UUID;
 public class Demo5 {
 	List<String> mockData = new ArrayList<>(100);
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		for (int i = 0; i < 100; i++) {
 			mockData.add(UUID.randomUUID().toString().replace("-", ""));
 		}
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		mockData.clear();
 	}
 
 	@Test

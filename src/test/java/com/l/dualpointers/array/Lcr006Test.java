@@ -1,8 +1,8 @@
 package com.l.dualpointers.array;
 
 import com.l.util.MockUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 public class Lcr006Test {
 	private List<int[]> list;
 
-	@Before
+	@AfterEach
 	public void setUp() throws Exception {
 		list = new ArrayList<>(100);
 		for (int i = 0; i < 100; i++) {

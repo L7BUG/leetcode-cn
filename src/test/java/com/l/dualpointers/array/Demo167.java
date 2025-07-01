@@ -1,8 +1,7 @@
 package com.l.dualpointers.array;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +21,7 @@ public class Demo167 {
 
 	private List<int[]> data;
 
-	@Before
+	@AfterEach
 	public void setUp() {
 		data = new ArrayList<>(MOCK_DATA_SIZE);
 		for (int i = 0; i < MOCK_DATA_SIZE; i++) {
@@ -33,11 +32,6 @@ public class Demo167 {
 			Arrays.sort(data);
 			this.data.add(data);
 		}
-	}
-
-	@After
-	public void tearDown() {
-		data.clear();
 	}
 
 	@Test

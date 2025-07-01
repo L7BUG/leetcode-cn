@@ -1,8 +1,8 @@
 package com.l.dualpointers.linked;
 
 import com.l.model.ListNode;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -16,7 +16,7 @@ public class Demo23 {
 	private static final int SIZE = 3;
 	private final ListNode[] data = new ListNode[SIZE];
 
-	@Before
+	@AfterEach
 	public void setUp() {
 		Random random = new Random();
 		for (int i = 0; i < SIZE; i++) {
