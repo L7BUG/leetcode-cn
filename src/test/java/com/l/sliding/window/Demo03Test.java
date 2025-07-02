@@ -1,6 +1,7 @@
 package com.l.sliding.window;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,21 @@ public class Demo03Test {
 		});
 	}
 
+	@Test
+	public void test02() {
+		data.forEach(i -> {
+			System.err.printf("lengthOfLongestSubstring(%s) = %s%n", i, lengthOfLongestSubstring2(i));
+		});
+	}
+
+	@Test
+	public void valid() {
+		for (String item : data) {
+			System.err.printf("item = [%s]%n", item);
+			Assertions.assertEquals(lengthOfLongestSubstring(item), lengthOfLongestSubstring2(item));
+		}
+	}
+
 	public int lengthOfLongestSubstring(String s) {
 		int max = 1;
 
@@ -54,6 +70,29 @@ public class Demo03Test {
 			}
 		}
 		System.err.println("maxSet = " + maxSet);
+		return max;
+	}
+
+	public int lengthOfLongestSubstring2(String s) {
+		Set<Character> set = new HashSet<>(s.length());
+		char[] charArray = s.toCharArray();
+		int max = 1;
+		int left = 0;
+		int right = 0;
+		while (right < charArray.length) {
+			if (!set.contains(charArray[right])) {
+				set.add(charArray[right]);
+				right++;
+				if (max < set.size()) {
+					max = set.size();
+				}
+				max = Math.max(max, set.size());
+				continue;
+			}
+			while (left <= right && set.contains(charArray[right])) {
+				set.remove(charArray[left++]);
+			}
+		}
 		return max;
 	}
 }
