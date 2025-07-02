@@ -3,13 +3,11 @@ package com.l.sliding.window;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.l.util.MockUtil;
-import com.l.util.TestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * <a href='https://leetcode.cn/problems/minimum-window-substring/description/'>[76]-最小覆盖子串</a>
@@ -22,9 +20,13 @@ public class Demo76Test {
 
 	@BeforeEach
 	public void setUp() {
-		data = new ArrayList<>(4000);
-		for (int i = 0; i < 4000; i++) {
-			data.add(UUID.randomUUID().toString().replace("-", ""));
+		data = new ArrayList<>(100);
+		for (int i = 0; i < 100; i++) {
+			StringBuilder sb = new StringBuilder();
+			for (int j = 0; j < 1000; j++) {
+				sb.append(UUID.randomUUID().toString().replace("-", ""));
+			}
+			data.add(sb.toString());
 		}
 	}
 
@@ -33,6 +35,15 @@ public class Demo76Test {
 		int length = uuid.length();
 		int random = MockUtil.random(length - 3);
 		return uuid.substring(random, random + 3);
+	}
+
+	private String temp(String s) {
+		int a = MockUtil.random(s.length());
+		int b = MockUtil.random(s.length());
+		while (a == b) {
+			b = MockUtil.random(s.length());
+		}
+		return s.substring(Math.min(a, b), Math.max(a, b) + 1);
 	}
 
 	@Test
@@ -58,13 +69,11 @@ public class Demo76Test {
 	@Test
 	public void test() {
 		for (String item : data) {
-			String temp = temp();
-			AtomicLong value01Time = new AtomicLong(0L);
-			AtomicLong value02Time = new AtomicLong(0L);
-			String value01 = TestUtils.consumesTime(() -> minWindow(item, temp), value01Time::set);
-			String value02 = TestUtils.consumesTime(() -> minWindow(item, temp), value02Time::set);
-			System.out.printf("minWindow(%s,%s) = %s,耗时=%s %n", item, temp, value01, value01Time.get());
-			System.out.printf("minWindow2(%s,%s) = %s,耗时=%s %n", item, temp, value02, value02Time.get());
+			String temp = temp(item);
+			String value01 = minWindow(item, temp);
+			String value02 = minWindow2(item, temp);
+			System.out.printf("minWindow(%s,%s) = %s%n", item, temp, value01);
+			System.out.printf("minWindow2(%s,%s) = %s%n", item, temp, value02);
 			System.out.println("#################################");
 			Assertions.assertEquals(value01, value02);
 		}
@@ -129,30 +138,33 @@ public class Demo76Test {
 	// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 	public String minWindow2(String s, String t) {
-		String min = "";
+		int minSize = Integer.MAX_VALUE;
 		char[] charArray = s.toCharArray();
-		int right = 0;
-		Map<Character, Integer> markMap = new HashMap<>(t.length());
-		for (int i = 0; i < t.length(); i++) {
-			markMap.put(t.charAt(i), markMap.getOrDefault(t.charAt(i), 0) + 1);
+		char[] tCharArray = t.toCharArray();
+		int right = 0, validLeft = 0, validRight = 0;
+		Map<Character, Integer> markMap = new HashMap<>();
+		for (char c : tCharArray) {
+			markMap.put(c, markMap.getOrDefault(c, 0) + 1);
 		}
 		for (int left = 0; left < charArray.length; left++) {
-			for (; right < charArray.length && !validMap(markMap); right++) {
+			for (; right < charArray.length; right++) {
+				if (validMap(markMap)) {
+					if (right - left < minSize) {
+						validLeft = left;
+						validRight = right;
+						minSize = right - left;
+					}
+					break;
+				}
 				if (markMap.containsKey(charArray[right])) {
 					markMap.put(charArray[right], markMap.get(charArray[right]) - 1);
-				}
-			}
-			if (validMap(markMap)) {
-				String substring = s.substring(left, right);
-				if (min.isEmpty() || min.length() > substring.length()) {
-					min = substring;
 				}
 			}
 			if (markMap.containsKey(charArray[left])) {
 				markMap.put(charArray[left], markMap.get(charArray[left]) + 1);
 			}
 		}
-		return min;
+		return s.substring(validLeft, validRight);
 	}
 
 	private boolean validMap(Map<Character, Integer> map) {

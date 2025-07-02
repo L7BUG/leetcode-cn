@@ -15,6 +15,7 @@ public class TestUtils {
 		T t = supplier.get();
 		long end = System.currentTimeMillis();
 		consumer.accept(end - start);
+		System.out.println("end - start = " + (end - start));
 		return t;
 	}
 }
