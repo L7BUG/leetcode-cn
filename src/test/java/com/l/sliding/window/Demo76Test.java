@@ -90,6 +90,13 @@ public class Demo76Test {
 		Assertions.assertEquals(value01, value02);
 	}
 
+	@Test
+	public void test3() {
+		String value01 = minWindow("ADOBECODEBANC", "ABC");
+		String value02 = minWindow2("ADOBECODEBANC", "ABC");
+		Assertions.assertEquals(value01, value02);
+	}
+
 	public String minWindow(String s, String t) {
 		Map<Character, Integer> ori = new HashMap<>();
 		Map<Character, Integer> cnt = new HashMap<>();
@@ -136,40 +143,34 @@ public class Demo76Test {
 	// 链接：https://leetcode.cn/problems/minimum-window-substring/solutions/257359/zui-xiao-fu-gai-zi-chuan-by-leetcode-solution/
 	// 来源：力扣（LeetCode）
 	// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
 	public String minWindow2(String s, String t) {
 		int minSize = Integer.MAX_VALUE;
 		char[] charArray = s.toCharArray();
 		char[] tCharArray = t.toCharArray();
-		int right = 0, validLeft = 0, validRight = 0;
-		Map<Character, Integer> markMap = new HashMap<>();
+		int right = 0, left = 0, validLeft = 0, validRight = 0;
+		int[] markArray = new int['z' + 1];
+		Arrays.fill(markArray, Integer.MIN_VALUE / 2);
 		for (char c : tCharArray) {
-			markMap.put(c, markMap.getOrDefault(c, 0) + 1);
+			markArray[c] = markArray[c] == Integer.MIN_VALUE / 2 ? 1 : markArray[c] + 1;
 		}
-		for (int left = 0; left < charArray.length; left++) {
-			for (; right < charArray.length; right++) {
-				if (validMap(markMap)) {
-					if (right - left < minSize) {
-						validLeft = left;
-						validRight = right;
-						minSize = right - left;
-					}
-					break;
+		for (; right < charArray.length; right++) {
+			markArray[charArray[right]]--;
+			for (; left < charArray.length && validArray(markArray); left++) {
+				if (right + 1 - left < minSize) {
+					validLeft = left;
+					validRight = right + 1;
+					minSize = right - left + 1;
 				}
-				if (markMap.containsKey(charArray[right])) {
-					markMap.put(charArray[right], markMap.get(charArray[right]) - 1);
-				}
-			}
-			if (markMap.containsKey(charArray[left])) {
-				markMap.put(charArray[left], markMap.get(charArray[left]) + 1);
+				markArray[charArray[left]]++;
 			}
 		}
+
 		return s.substring(validLeft, validRight);
 	}
 
-	private boolean validMap(Map<Character, Integer> map) {
-		for (Integer value : map.values()) {
-			if (value > 0) {
+	private boolean validArray(int[] array) {
+		for (int i : array) {
+			if (i > 0) {
 				return false;
 			}
 		}
