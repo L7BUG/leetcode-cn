@@ -145,23 +145,23 @@ public class Demo76Test {
 	// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 	public String minWindow2(String s, String t) {
 		int minSize = Integer.MAX_VALUE;
-		char[] charArray = s.toCharArray();
-		char[] tCharArray = t.toCharArray();
+		int length = s.length();
 		int right = 0, left = 0, validLeft = 0, validRight = 0;
 		int[] markArray = new int['z' + 1];
 		Arrays.fill(markArray, Integer.MIN_VALUE / 2);
-		for (char c : tCharArray) {
-			markArray[c] = markArray[c] == Integer.MIN_VALUE / 2 ? 1 : markArray[c] + 1;
+		for (int i = 0; i < t.length(); i++) {
+			char item = t.charAt(i);
+			markArray[item] = markArray[item] == Integer.MIN_VALUE / 2 ? 1 : markArray[item] + 1;
 		}
-		for (; right < charArray.length; right++) {
-			markArray[charArray[right]]--;
-			for (; left < charArray.length && validArray(markArray); left++) {
+		for (; right < length; right++) {
+			markArray[s.charAt(right)]--;
+			for (; left < length && validArray(markArray); left++) {
 				if (right + 1 - left < minSize) {
 					validLeft = left;
 					validRight = right + 1;
 					minSize = right - left + 1;
 				}
-				markArray[charArray[left]]++;
+				markArray[s.charAt(left)]++;
 			}
 		}
 
