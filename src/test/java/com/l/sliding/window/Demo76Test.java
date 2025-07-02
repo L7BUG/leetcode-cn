@@ -1,10 +1,15 @@
 package com.l.sliding.window;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.l.util.MockUtil;
+import com.l.util.TestUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * <a href='https://leetcode.cn/problems/minimum-window-substring/description/'>[76]-最小覆盖子串</a>
@@ -17,8 +22,8 @@ public class Demo76Test {
 
 	@BeforeEach
 	public void setUp() {
-		data = new ArrayList<>(100);
-		for (int i = 0; i < 100; i++) {
+		data = new ArrayList<>(4000);
+		for (int i = 0; i < 4000; i++) {
 			data.add(UUID.randomUUID().toString().replace("-", ""));
 		}
 	}
@@ -50,9 +55,35 @@ public class Demo76Test {
 		}
 	}
 
+	@Test
+	public void test() {
+		for (String item : data) {
+			String temp = temp();
+			AtomicLong value01Time = new AtomicLong(0L);
+			AtomicLong value02Time = new AtomicLong(0L);
+			String value01 = TestUtils.consumesTime(() -> minWindow(item, temp), value01Time::set);
+			String value02 = TestUtils.consumesTime(() -> minWindow(item, temp), value02Time::set);
+			System.out.printf("minWindow(%s,%s) = %s,耗时=%s %n", item, temp, value01, value01Time.get());
+			System.out.printf("minWindow2(%s,%s) = %s,耗时=%s %n", item, temp, value02, value02Time.get());
+			System.out.println("#################################");
+			Assertions.assertEquals(value01, value02);
+		}
+	}
+
+	@Test
+	public void test2() {
+		JSONObject jsonObject = JSON.parseObject(this.getClass().getClassLoader().getResourceAsStream("leetcode/76.json"));
+		Assertions.assertNotNull(jsonObject);
+		String item = jsonObject.getString("s");
+		String temp = jsonObject.getString("t");
+		String value01 = minWindow(item, temp);
+		String value02 = minWindow2(item, temp);
+		Assertions.assertEquals(value01, value02);
+	}
+
 	public String minWindow(String s, String t) {
-		Map<Character, Integer> ori = new HashMap<Character, Integer>();
-		Map<Character, Integer> cnt = new HashMap<Character, Integer>();
+		Map<Character, Integer> ori = new HashMap<>();
+		Map<Character, Integer> cnt = new HashMap<>();
 		int tLen = t.length();
 		for (int i = 0; i < tLen; i++) {
 			char c = t.charAt(i);
@@ -97,9 +128,36 @@ public class Demo76Test {
 	// 来源：力扣（LeetCode）
 	// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-	public boolean need(Map<Character, Integer> map) {
-		for (Map.Entry<Character, Integer> item : map.entrySet()) {
-			if (item.getValue() == 0) {
+	public String minWindow2(String s, String t) {
+		String min = "";
+		char[] charArray = s.toCharArray();
+		int right = 0;
+		Map<Character, Integer> markMap = new HashMap<>(t.length());
+		for (int i = 0; i < t.length(); i++) {
+			markMap.put(t.charAt(i), markMap.getOrDefault(t.charAt(i), 0) + 1);
+		}
+		for (int left = 0; left < charArray.length; left++) {
+			for (; right < charArray.length && !validMap(markMap); right++) {
+				if (markMap.containsKey(charArray[right])) {
+					markMap.put(charArray[right], markMap.get(charArray[right]) - 1);
+				}
+			}
+			if (validMap(markMap)) {
+				String substring = s.substring(left, right);
+				if (min.isEmpty() || min.length() > substring.length()) {
+					min = substring;
+				}
+			}
+			if (markMap.containsKey(charArray[left])) {
+				markMap.put(charArray[left], markMap.get(charArray[left]) + 1);
+			}
+		}
+		return min;
+	}
+
+	private boolean validMap(Map<Character, Integer> map) {
+		for (Integer value : map.values()) {
+			if (value > 0) {
 				return false;
 			}
 		}
