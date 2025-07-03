@@ -72,10 +72,13 @@ public class Demo76Test {
 			String temp = temp(item);
 			String value01 = minWindow(item, temp);
 			String value02 = minWindow2(item, temp);
+			String value03 = minWindow3(item, temp);
 			System.out.printf("minWindow(%s,%s) = %s%n", item, temp, value01);
 			System.out.printf("minWindow2(%s,%s) = %s%n", item, temp, value02);
+			System.out.printf("minWindow3(%s,%s) = %s%n", item, temp, value03);
 			System.out.println("#################################");
 			Assertions.assertEquals(value01, value02);
+			Assertions.assertEquals(value01, value03);
 		}
 	}
 
@@ -175,5 +178,38 @@ public class Demo76Test {
 			}
 		}
 		return true;
+	}
+
+	// ai解法
+	public String minWindow3(String s, String t) {
+		if (s == null || t == null || s.length() < t.length()) return "";
+
+		int[] map = new int[128]; // 字符频率数组
+		for (char c : t.toCharArray()) map[c]++; // 初始化 t 的字符计数[6,9](@ref)
+
+		int left = 0, right = 0; // 窗口边界
+		int minLeft = 0, minLen = Integer.MAX_VALUE; // 最小子串记录
+		int count = t.length(); // 待匹配字符数
+
+		while (right < s.length()) {
+			char c = s.charAt(right);
+			// 若当前字符在 t 中出现，则减少待匹配数
+			if (map[c]-- > 0) count--; // [9,11](@ref)
+			right++; // 右移窗口
+
+			// 当窗口包含所有 t 的字符时，尝试收缩左边界
+			while (count == 0) {
+				// 更新最小窗口
+				if (right - left < minLen) {
+					minLen = right - left;
+					minLeft = left;
+				}
+				// 左移窗口并恢复字符计数
+				char leftChar = s.charAt(left);
+				if (++map[leftChar] > 0) count++; // 若移出关键字符，需重新匹配[6,9](@ref)
+				left++;
+			}
+		}
+		return minLen == Integer.MAX_VALUE ? "" : s.substring(minLeft, minLeft + minLen);
 	}
 }
