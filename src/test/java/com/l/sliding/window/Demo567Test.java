@@ -82,4 +82,24 @@ public class Demo567Test {
 			System.out.println("checkInclusion(temp(item), item) = " + checkInclusion(temp(item), item));
 		}
 	}
+
+
+	public boolean checkInclusion2(String s1, String s2) {
+		int s1Length = s1.length(), s2Length = s2.length();
+		if (s1Length > s2Length) {
+			return false;
+		}
+		int count = 0;
+		int[] markArray = new int[26];
+		for (char item : s1.toCharArray()) {
+			markArray[item - 'a']++;
+		}
+		int left = 0, right = 0;
+
+		while (right < s2Length) {
+			// markArray[s2.charAt(right)]
+			right++;
+		}
+		return false;
+	}
 }

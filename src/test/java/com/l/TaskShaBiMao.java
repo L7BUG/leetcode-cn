@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +80,6 @@ public class TaskShaBiMao {
 	private void jsonToMd(JSONObject jsonObject) throws Exception {
 
 		StringBuilder sb = new StringBuilder();
-		System.err.println(jsonObject);
 		Assertions.assertNotNull(jsonObject);
 		jsonObject = jsonObject.getJSONObject("data");
 		String fileName = jsonObject.getString("name");
@@ -128,13 +129,22 @@ public class TaskShaBiMao {
 	}
 
 	public void outMdFile(String s, String fileName) throws Exception {
-		URL resource = this.getClass().getClassLoader().getResource("");
+		URL resource = TaskShaBiMao.class.getClassLoader().getResource("mao/config.json");
 		System.err.println("resource = " + resource);
 		File root = new File(resource.toURI().getPath());
-		File file = new File(root, "/mao-out/" + fileName + ".md");
+		File file = new File(root.getParentFile(), "/md-out/" + fileName + ".md");
 
 		FileUtil.touch(file);
 		FileUtil.writeUtf8String(s, file);
+	}
+
+	@Test
+	public void testsetset() throws URISyntaxException {
+		URI uri = this.getClass().getClassLoader().getResource("mao/config.json").toURI();
+		System.out.println(uri);
+		File root = new File(uri);
+		System.out.println(root);
+		System.out.println(root.getParentFile());
 	}
 
 	@Test
@@ -150,7 +160,7 @@ public class TaskShaBiMao {
 	public void test3() throws Exception {
 		OkHttpClient okHttpClient = new OkHttpClient();
 		// File file = new File(this.getClass().getClassLoader().getResource("sb-mao-config").toURI().getPath());
-		JSONObject jsonObject = JSON.parseObject(this.getClass().getClassLoader().getResourceAsStream("sb-mao-config/config.json"));
+		JSONObject jsonObject = JSON.parseObject(this.getClass().getClassLoader().getResourceAsStream("mao/config.json"));
 		Assertions.assertNotNull(jsonObject);
 		JSONArray list = jsonObject.getJSONObject("data").getJSONArray("list");
 		for (int i = 0; i < list.size(); i++) {
@@ -159,7 +169,7 @@ public class TaskShaBiMao {
 			System.err.println("string = " + string);
 			String responseBody = okHttpClient.newCall(new Request.Builder().url("https://online.jifenluohubang.com/api/student/question/set/" + string)
 				.get()
-				.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjoic3R1ZGVudCIsImV4cCI6MTc1MDEyNzI0MSwiaWF0IjoxNzQ5NTIyNDQxLCJpZCI6MTkwNywibW9kZSI6Ind4YXBwIn0.Z9o6r7nt4D8wMCIq8xWRqzo_f3Z_6wr44iMir_8uOh0")
+				.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjoic3R1ZGVudCIsImV4cCI6MTc1NTQ5OTc3NiwiaWF0IjoxNzU0ODk0OTc2LCJpZCI6MTkwNywibW9kZSI6Ind4YXBwIn0.jtJ7eoWcinabEyPHyN28gHNXhU4QLGEpY3w4v8e4VbM")
 				.build()).execute().body().string();
 			System.err.println("responseBody = " + responseBody);
 			// File outJsonFile = new File(file, i + ".json");

@@ -1,0 +1,154 @@
+{
+    "code": 200,
+    "message": "成功",
+    "data": {
+        "list": [
+            {
+                "id": 1612,
+                "detail": {
+                    "id": 1432,
+                    "catalogue_id": 1612,
+                    "question_set_id": 50,
+                    "question_set": {
+                        "id": 50,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷1",
+                        "changed_at": "2024-11-06 14:12:40",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 92206,
+                        "last_start_at": "2025-08-01 09:05:28"
+                    }
+                }
+            },
+            {
+                "id": 1613,
+                "detail": {
+                    "id": 1433,
+                    "catalogue_id": 1613,
+                    "question_set_id": 51,
+                    "question_set": {
+                        "id": 51,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷2",
+                        "changed_at": "2025-07-21 15:19:31",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95265,
+                        "last_start_at": "2025-08-11 14:50:38"
+                    }
+                }
+            },
+            {
+                "id": 1614,
+                "detail": {
+                    "id": 1434,
+                    "catalogue_id": 1614,
+                    "question_set_id": 52,
+                    "question_set": {
+                        "id": 52,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷3",
+                        "changed_at": "2024-11-07 11:40:03",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95266,
+                        "last_start_at": "2025-08-11 14:50:42"
+                    }
+                }
+            },
+            {
+                "id": 1615,
+                "detail": {
+                    "id": 1435,
+                    "catalogue_id": 1615,
+                    "question_set_id": 53,
+                    "question_set": {
+                        "id": 53,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷4",
+                        "changed_at": "2025-07-21 15:06:08",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95267,
+                        "last_start_at": "2025-08-11 14:50:45"
+                    }
+                }
+            },
+            {
+                "id": 1616,
+                "detail": {
+                    "id": 1436,
+                    "catalogue_id": 1616,
+                    "question_set_id": 54,
+                    "question_set": {
+                        "id": 54,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷5",
+                        "changed_at": "2024-11-07 17:07:21",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95268,
+                        "last_start_at": "2025-08-11 14:50:48"
+                    }
+                }
+            },
+            {
+                "id": 1617,
+                "detail": {
+                    "id": 1437,
+                    "catalogue_id": 1617,
+                    "question_set_id": 64,
+                    "question_set": {
+                        "id": 64,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷6",
+                        "changed_at": "2024-09-13 13:47:20",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95269,
+                        "last_start_at": "2025-08-11 14:50:51"
+                    }
+                }
+            },
+            {
+                "id": 1618,
+                "detail": {
+                    "id": 1438,
+                    "catalogue_id": 1618,
+                    "question_set_id": 65,
+                    "question_set": {
+                        "id": 65,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷7",
+                        "changed_at": "2024-08-16 10:32:20",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95270,
+                        "last_start_at": "2025-08-11 14:50:57"
+                    }
+                }
+            },
+            {
+                "id": 1619,
+                "detail": {
+                    "id": 1439,
+                    "catalogue_id": 1619,
+                    "question_set_id": 66,
+                    "question_set": {
+                        "id": 66,
+                        "name": "沪邦邦-中级经济基础知识 模拟卷8",
+                        "changed_at": "2025-07-21 15:21:49",
+                        "question_number": 105,
+                        "finish_nums": 0,
+                        "record_status": 2,
+                        "last_log_id": 95271,
+                        "last_start_at": "2025-08-11 14:51:00"
+                    }
+                }
+            }
+        ],
+        "collect_nums": 0,
+        "correction_nums": 0
+    }
+}
